@@ -1,11 +1,13 @@
 import socket
+import struct
 
 size = 8
 list_pkt = []
 ii = 1
-packet = bytearray(size)
+packet = bytearray([0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
 
-UDP_IP = "84.184.253.96"
+#"84.184.253.96"
+UDP_IP = "127.0.0.1"
 UDP_PORT = 5000
 MESSAGE = b"Thomas es funktioniert du bist mein HELD!!"
 
@@ -14,21 +16,14 @@ print("UDP target port: %s" % UDP_PORT)
 print("message: %s" % MESSAGE)
 
 print("Please enter your command (#1, #2, #3, #4): ")
-commandobyte = int(input())
+packet[0] = int(input())
 print("Please enter your sequenznumber: ")
-sequenz = int(input())
-list_pkt.append(commandobyte)
-list_pkt.append(sequenz)
+packet[1] = int(input())
 
-while ii < 4:
-  print("Please enter the adress to read or write: ")
-  adr = int(input())
-  list_pkt.append(adr)
+while ii < 5:
+  print(f" {ii} : Please enter the adress to read or write: ")
+  packet[ii + 1] = int(input())
   ii += 1
-
-print(f"{packet}")
-print(f"Type:{type(commandobyte)}")
-packet = bytearray(list_pkt)
 
 print(f"{packet}")
 
