@@ -4,8 +4,8 @@ import socket
 UDP_IP = "127.0.0.1"
 UDP_PORT = 5000
 
-packet_description = ["cmd", "seq_no", "adr0", "adr1", "adr2", "adr3", "finish"]
-packet = bytearray([0x00 for _ in packet_description])
+packet_description = ["cmd", "seq_no", "len", "adr0", "adr1", "data0", "data1"]    # to add more bytes just extend packet_description
+packet = bytearray([0x00 for _ in packet_description])    # dynamic bytearray with lenght of packet_description
 
 for ii, description in enumerate(packet_description):
   while True:
